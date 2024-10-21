@@ -53,3 +53,15 @@ export default function() {
     let resCustom = http.request("GET", "https://duckduckgo.com");
     console.log("CUSTOM Method: " + resCustom.status);
 }
+
+// Function to handle the summary output
+export function handleSummary(data) {
+    // Get a timestamp for a unique filename
+    let timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+
+    // Save results to a file with a unique timestamp
+    return {
+        [`summary-${timestamp}.json`]: JSON.stringify(data, null, 2),
+        stdout: JSON.stringify(data.metrics, null, 2),
+    };
+}
